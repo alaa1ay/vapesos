@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS VAPE - Premium Electronic Vapes & Shisha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-red: #991b1b;
+            --black: #000000;
+            --dark-gray: #1f2937;
+            --silver: #e5e7eb;
+            --light-silver: #f9fafb;
+        }
+        
+        body {
+            background: #1f2937;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+            
+            
+        }
+         .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            width: 1200px; /* يمكنك تغيير العرض حسب الحاجة */
+            height: 500px;
+            margin: auto;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            transition: opacity 1s ease-in-out; /* تأثير الانتقال */
+            opacity: 0; /* بداية الصورة تكون شفافة */
+        }
+        .active {
+            display: block;
+            opacity: 1; /* الصورة النشطة تكون واضحة */
+        }
+        
+        .arabic {
+            direction: rtl;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+        }
+        
+        .cart-notification {
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .search-results {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head> 
+
+
+<body class="bg-gray-50">
+    <!-- Language Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="languageToggle" class="bg-red-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-red-700 transition-colors">
+            <i class="fas fa-language mr-2"></i>العربية
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-black text-white py-4 px-6 sticky top-0 z-40 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold text-red-600">SOS VAPE</h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="hover:text-red-400 transition-colors" data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="#" class="hover:text-red-400 transition-colors" data-en="Products" data-ar="المنتجات">Products</a>
+                <a href="#" class="hover:text-red-400 transition-colors" data-en="About" data-ar="عننا">About</a>
+                <a href="#" class="hover:text-red-400 transition-colors" data-en="Contact" data-ar="اتصل بنا">Contact</a>
+            </div>
+
+            
+            
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search products..." 
+                           class="bg-gray-800 text-white px-4 py-2 rounded-full w-40 md:w-64 focus:outline-none focus:ring-2 focus:ring-red-600">
+                    <div id="searchResults" class="absolute top-full left-0 mt-2 w-full bg-white text-black rounded-lg shadow-xl hidden search-results"></div>
+                </div>
+                
+                <button id="favoritesBtn" class="relative p-2 text-gray-300 hover:text-red-400">
+                    <i class="fas fa-heart text-xl"></i>
+                    <span id="favoritesCount" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </button>
+                
+                <button id="cartBtn" class="relative p-2 text-gray-300 hover:text-red-400">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+     
+
+    
+
+    <!-- Hero Section -->
+
+ <section class="bg-gradient-to-r from-black via-red-900 to-black text-white py-20">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6" data-en="Premium Vaping Experience" data-ar="تجربة تدخين إلكتروني متميزة">Premium Vaping Experience</h2>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300" data-en="Discover the finest electronic vapes and shisha devices" data-ar="اكتشف أفضل أجهزة الفيب والشيشة الإلكترونية">Discover the finest electronic vapes and shisha devices</p>
+            <button class="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-full text-lg font-semibold transition-colors" data-en="Shop Now" data-ar="تسوق الآن">Shop Now</button>
+        </div>
+    </section>
+
+
+
+
+   <div class="slideshow-container">
+    <img class="slides active" src="create-image-include-vape-in-red-and-black-LC3Rkj3b2X (1).png" alt="صورة 1">
+    <img class="slides" src="Artguru-text2image-20250825192502 (1).png" alt="صورة 2">
+    <img class="slides" src="Artguru-text2image-20250825192324 (1).png" alt="صورة 3">
+</div>
+
+
+
+
+
+    <!-- Products Section -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800" data-en="Featured Products" data-ar="المنتجات المميزة">Featured Products</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="productsGrid">
+                <!-- Products will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform z-50">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold" data-en="Shopping Cart" data-ar="سلة التسوق">Shopping Cart</h3>
+                <button id="closeCart" class="text-gray-500 hover:text-red-600">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="cartItems" class="flex-1 overflow-y-auto mb-4">
+                <!-- Cart items will be dynamically added here -->
+                <div class="text-center text-gray-500 py-12" data-en="Your cart is empty" data-ar="سلة التسوق فارغة">Your cart is empty</div>
+            </div>
+            
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-semibold" data-en="Total:" data-ar="المجموع:">Total:</span>
+                    <span id="cartTotal" class="font-bold text-red-600">$0.00</span>
+                </div>
+                <button class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors" data-en="Checkout" data-ar="الدفع">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Sidebar -->
+    <div id="favoritesSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform z-50">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold" data-en="Favorites" data-ar="المفضلة">Favorites</h3>
+                <button id="closeFavorites" class="text-gray-500 hover:text-red-600">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="favoritesItems" class="flex-1 overflow-y-auto">
+                <!-- Favorite items will be dynamically added here -->
+                <div class="text-center text-gray-500 py-12" data-en="No favorites yet" data-ar="لا توجد مفضلات بعد">No favorites yet</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Notification -->
+    <div id="cartNotification" class="fixed top-20 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg cart-notification hidden z-50">
+        <span data-en="Item added to cart!" data-ar="تمت إضافة المنتج إلى السلة!">Item added to cart!</span>
+    </div>
+
+    
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold text-red-600 mb-4">SOS VAPE</h4>
+                    <p class="text-gray-400" data-en="Premium electronic vaping products and shisha devices for the modern smoker." data-ar="منتجات فيب وشيشة إلكترونية متميزة للمدخن العصري.">Premium electronic vaping products and shisha devices for the modern smoker.</p>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-red-400 transition-colors" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors" data-en="Products" data-ar="المنتجات">Products</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors" data-en="About Us" data-ar="عننا">About Us</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4" data-en="Support" data-ar="الدعم">Support</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-red-400 transition-colors" data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors" data-en="Shipping" data-ar="الشحن">Shipping</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors" data-en="Returns" data-ar="الإرجاع">Returns</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition-colors" data-en="Warranty" data-ar="الضمان">Warranty</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4" data-en="Contact Info" data-ar="معلومات الاتصال">Contact Info</h5>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope mr-2"></i> info@sosvape.com</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i> <span data-en="123 Vape Street, City" data-ar="شارع الفيب 123، المدينة">123 Vape Street, City</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2024 SOS VAPE. <span data-en="All rights reserved." data-ar="جميع الحقوق محفوظة.">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+
+  let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let slides = document.getElementsByClassName("slides");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        slides[slideIndex - 1].style.display = "block";  
+        setTimeout(() => {
+            slides[slideIndex - 1].classList.add("active");
+        }, 10); // تأخير بسيط لإظهار التأثير
+        setTimeout(() => {
+            slides[slideIndex - 1].classList.remove("active");
+        }, 3000); // مدة عرض الصورة
+        setTimeout(showSlides, 3000); // تغيير الصورة كل 3 ثواني
+    }
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Nebula Pro X",
+                description: "Advanced vaping device with temperature control and long battery life",
+                price: 89.99,
+                category: "Vape",
+                image: "voopoo-drag-4-gun-metal-forest-green.webp",
+                alt: "Sleek black Nebula Pro X vaping device with red accents and digital display"
+            },
+            {
+                id: 2,
+                name: "Cloud King Elite",
+                description: "Premium shisha device with multiple hose support and LED lighting",
+                price: 149.99,
+                category: "Shisha",
+                image: "OIP (5).webp",
+                alt: "Modern Cloud King Elite electronic shisha with chrome finish and colorful LED lights"
+            },
+            {
+                id: 3,
+                name: "AeroVape Mini",
+                description: "Compact and portable vaping pen for on-the-go use",
+                price: 49.99,
+                category: "Vape",
+                image: "OIP (1) (2).webp",
+                alt: "Small silver AeroVape Mini pen-style device with minimalist design"
+            },
+            {
+                id: 4,
+                name: "Hookah Master Pro",
+                description: "Professional electronic hookah with wireless connectivity",
+                price: 199.99,
+                category: "Shisha",
+                image: "OIP (2).webp",
+                alt: "Sophisticated Hookah Master Pro with glass base and modern control panel"
+            },
+            {
+                id: 5,
+                name: "VaporFlex Ultra",
+                description: "Flexible vaping system with interchangeable modules",
+                price: 119.99,
+                category: "Vape",
+                image: "OIP (3).webp",
+                alt: "Modular VaporFlex Ultra system with multiple attachment options in red and black"
+            },
+            {
+                id: 6,
+                name: "Desert Rose Shisha",
+                description: "Elegant shisha with rose gold accents and touch controls",
+                price: 169.99,
+                category: "Shisha",
+                image: "OIP (3).webp",
+                alt: "Luxurious Desert Rose electronic shisha with rose gold trim and crystal base"
+            },
+            {
+                id: 7,
+                name: "Stealth Vape Pod",
+                description: "Discreet pod system with fast charging and multiple flavors",
+                price: 39.99,
+                category: "Vape",
+                image: "OIP.webp",
+                alt: "Compact Stealth Vape Pod system in matte black with charging case"
+            },
+            {
+                id: 8,
+                name: "Oasis Hookah Tower",
+                description: "Multi-level electronic hookah for group sessions",
+                price: 249.99,
+                category: "Shisha",
+                image: "OIP (4).webp",
+                alt: "Impressive Oasis Hookah Tower with multiple levels and contemporary design"
+            },
+            {
+                id: 9,
+                name: "Quantum Vape Box",
+                description: "High-performance box mod with customizable settings",
+                price: 79.99,
+                category: "Vape",
+                image: "OIP.jpeg",
+                alt: "Robust Quantum Vape Box mod with digital screen and adjustable settings"
+            },
+            {
+                id: 10,
+                name: "Royal Shisha Luxe",
+                description: "Luxury electronic shisha with leather accents and premium finish",
+                price: 299.99,
+                category: "Shisha",
+                image: "OIP.webp",
+                alt: "Opulent Royal Shisha Luxe with genuine leather wrapping and gold details"
+            },
+            {
+                id: 11,
+                name: "Pulse Vape Stick",
+                description: "Slim vape stick with haptic feedback and smart technology",
+                price: 59.99,
+                category: "Vape",
+                image: "voopoo-drag-4-gun-metal-forest-green.webp",
+                alt: "Sleek Pulse Vape Stick with vibration feedback and minimalist interface"
+            },
+            {
+                id: 12,
+                name: "Phoenix Hookah Rise",
+                description: "Self-cleaning electronic hookah with advanced filtration",
+                price: 179.99,
+                category: "Shisha",
+                image: "https://placehold.co/400x300",
+                alt: "Innovative Phoenix Hookah Rise with automatic cleaning system and modern design"
+            },
+            {
+                id: 13,
+                name: "Nova Vape Kit",
+                description: "Complete starter kit with everything needed to begin vaping",
+                price: 69.99,
+                category: "Vape",
+                image: "https://placehold.co/400x300",
+                alt: "Comprehensive Nova Vape Kit including device, charger, and accessories"
+            },
+            {
+                id: 14,
+                name: "Sultan Shisha Classic",
+                description: "Traditional design with modern electronic functionality",
+                price: 129.99,
+                category: "Shisha",
+                image: "https://placehold.co/400x300",
+                alt: "Elegant Sultan Shisha Classic combining traditional aesthetics with modern technology"
+            },
+            {
+                id: 15,
+                name: "Zenith Vape Mod",
+                description: "Advanced mod with Bluetooth connectivity and app control",
+                price: 99.99,
+                category: "Vape",
+                image: "https://placehold.co/400x300",
+                alt: "High-tech Zenith Vape Mod with smartphone connectivity and advanced features"
+            },
+            {
+                id: 16,
+                name: "Mystic Hookah Orb",
+                description: "Spherical design electronic hookah with ambient lighting",
+                price: 159.99,
+                category: "Shisha",
+                image: "https://placehold.co/400x300",
+                alt: "Futuristic Mystic Hookah Orb with spherical glass chamber and color-changing lights"
+            },
+            {
+                id: 17,
+                name: "Apex Vape Pen",
+                description: "Beginner-friendly vape pen with simple one-button operation",
+                price: 34.99,
+                category: "Vape",
+                image: "https://placehold.co/400x300",
+                alt: "User-friendly Apex Vape Pen with simple controls and ergonomic design"
+            },
+            {
+                id: 18,
+                name: "Empire Shisha Pro",
+                description: "Commercial-grade electronic shisha for establishments",
+                price: 349.99,
+                category: "Shisha",
+                image: "https://placehold.co/400x300",
+                alt: "Professional Empire Shisha Pro designed for commercial use with durable construction"
+            },
+            {
+                id: 19,
+                name: "Fusion Vape Hybrid",
+                description: "Hybrid device that works with both pods and traditional tanks",
+                price: 89.99,
+                category: "Vape",
+                image: "https://placehold.co/400x300",
+                alt: "Versatile Fusion Vape Hybrid supporting multiple vaping styles and attachments"
+            },
+            {
+                id: 20,
+                name: "Celestial Hookah",
+                description: "Space-themed electronic hookah with star projection effects",
+                price: 199.99,
+                category: "Shisha",
+                image: "https://placehold.co/400x300",
+                alt: "Unique Celestial Hookah with astronomy theme and star projection lighting effects"
+            }
+        ];
+
+        // State management
+        let cart = [];
+        let favorites = [];
+        let currentLanguage = 'en';
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const cartBtn = document.getElementById('cartBtn');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.getElementById('cartCount');
+        const favoritesBtn = document.getElementById('favoritesBtn');
+        const favoritesSidebar = document.getElementById('favoritesSidebar');
+        const closeFavorites = document.getElementById('closeFavorites');
+        const favoritesItems = document.getElementById('favoritesItems');
+        const favoritesCount = document.getElementById('favoritesCount');
+        const cartNotification = document.getElementById('cartNotification');
+        const languageToggle = document.getElementById('languageToggle');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        // Initialize the application
+        function init() {
+            renderProducts();
+            setupEventListeners();
+            updateCartUI();
+            updateFavoritesUI();
+        }
+
+        // Render products to the grid
+        function renderProducts() {
+            productsGrid.innerHTML = '';
+            products.forEach(product => {
+                const isFavorite = favorites.includes(product.id);
+                const productCard = `
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                        <div class="relative">
+                            <img src="${product.image}" alt="${product.alt}" class="w-full h-48 object-cover" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b8834809-59cf-4662-84e1-49b747727d4b.png'">
+                            <button class="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md favorite-btn ${isFavorite ? 'text-red-600' : 'text-gray-400'}" data-product-id="${product.id}">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2 text-gray-800">${product.name}</h3>
+                            <p class="text-gray-600 text-sm mb-3">${product.description}</p>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-red-600 font-bold text-xl">$${product.price.toFixed(2)}</span>
+                                <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">${product.category}</span>
+                            </div>
+                            <button class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold transition-colors add-to-cart" data-product-id="${product.id}">
+                                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.innerHTML += productCard;
+            });
+
+            // Add event listeners to the new buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.getAttribute('data-product-id'));
+                    addToCart(productId);
+                });
+            });
+
+            document.querySelectorAll('.favorite-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.closest('.favorite-btn').getAttribute('data-product-id'));
+                    toggleFavorite(productId);
+                });
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            cartBtn.addEventListener('click', () => {
+                cartSidebar.style.transform = 'translateX(0)';
+            });
+
+            closeCart.addEventListener('click', () => {
+                cartSidebar.style.transform = 'translateX(100%)';
+            });
+
+            favoritesBtn.addEventListener('click', () => {
+                favoritesSidebar.style.transform = 'translateX(0)';
+            });
+
+            closeFavorites.addEventListener('click', () => {
+                favoritesSidebar.style.transform = 'translateX(100%)';
+            });
+
+            languageToggle.addEventListener('click', toggleLanguage);
+
+            searchInput.addEventListener('input', handleSearch);
+        }
+
+        // Cart functionality
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showCartNotification();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        function updateCartQuantity(productId, quantity) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = quantity;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="text-center text-gray-500 py-12" data-en="Your cart is empty" data-ar="سلة التسوق فارغة">Your cart is empty</div>';
+                cartTotal.textContent = '$0.00';
+                return;
+            }
+
+            let total = 0;
+            cartItems.innerHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = `
+                    <div class="flex items-center justify-between py-3 border-b">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.image}" alt="${item.alt}" class="w-16 h-16 object-cover rounded" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/202e9698-86c7-49dc-b238-2b07887f8610.png'">
+                            <div>
+                                <h4 class="font-semibold text-sm">${item.name}</h4>
+                                <p class="text-red-600 font-bold">$${item.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="w-6 h-6 bg-gray-200 rounded decrease-quantity" data-product-id="${item.id}">-</button>
+                            <span class="w-8 text-center">${item.quantity}</span>
+                            <button class="w-6 h-6 bg-gray-200 rounded increase-quantity" data-product-id="${item.id}">+</button>
+                            <button class="text-red-600 hover:text-red-800 remove-item" data-product-id="${item.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                cartItems.innerHTML += cartItem;
+            });
+
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+
+            // Add event listeners to cart item buttons
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.getAttribute('data-product-id'));
+                    const item = cart.find(item => item.id === productId);
+                    updateCartQuantity(productId, item.quantity + 1);
+                });
+            });
+
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.getAttribute('data-product-id'));
+                    const item = cart.find(item => item.id === productId);
+                    updateCartQuantity(productId, item.quantity - 1);
+                });
+            });
+
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.closest('.remove-item').getAttribute('data-product-id'));
+                    removeFromCart(productId);
+                });
+            });
+        }
+
+        function showCartNotification() {
+            cartNotification.classList.remove('hidden');
+            setTimeout(() => {
+                cartNotification.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Favorites functionality
+        function toggleFavorite(productId) {
+            const index = favorites.indexOf(productId);
+            if (index === -1) {
+                favorites.push(productId);
+            } else {
+                favorites.splice(index, 1);
+            }
+            updateFavoritesUI();
+            renderProducts(); // Re-render to update heart icons
+        }
+
+        function updateFavoritesUI() {
+            favoritesCount.textContent = favorites.length;
+            
+            if (favorites.length === 0) {
+                favoritesItems.innerHTML = '<div class="text-center text-gray-500 py-12" data-en="No favorites yet" data-ar="لا توجد مفضلات بعد">No favorites yet</div>';
+                return;
+            }
+
+            favoritesItems.innerHTML = '';
+            favorites.forEach(favId => {
+                const product = products.find(p => p.id === favId);
+                if (product) {
+                    const favoriteItem = `
+                        <div class="flex items-center space-x-3 py-3 border-b">
+                            <img src="${product.image}" alt="${product.alt}" class="w-16 h-16 object-cover rounded" onerror="this.src='https://placehold.co/64x64?text=Image+Not+Found'">
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-sm">${product.name}</h4>
+                                <p class="text-red-600 font-bold">$${product.price.toFixed(2)}</p>
+                            </div>
+                            <button class="text-red-600 hover:text-red-800 remove-favorite" data-product-id="${product.id}">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+                    favoritesItems.innerHTML += favoriteItem;
+                }
+            });
+
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-favorite').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.closest('.remove-favorite').getAttribute('data-product-id'));
+                    toggleFavorite(productId);
+                });
+            });
+        }
+
+        // Language toggle functionality
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            document.body.classList.toggle('arabic', currentLanguage === 'ar');
+            languageToggle.innerHTML = currentLanguage === 'en' ? 
+                '<i class="fas fa-language mr-2"></i>العربية' : 
+                '<i class="fas fa-language mr-2"></i>English';
+            
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
+                const text = currentLanguage === 'en' ? 
+                    element.getAttribute('data-en') : 
+                    element.getAttribute('data-ar');
+                if (text) element.textContent = text;
+            });
+
+            // Update placeholders
+            searchInput.placeholder = currentLanguage === 'en' ? 'Search products...' : 'ابحث عن المنتجات...';
+        }
+
+        // Search functionality
+        function handleSearch(e) {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.classList.add('hidden');
+                return;
+            }
+
+            const results = products.filter(product => 
+                product.name.toLowerCase().includes(query) ||
+                product.description.toLowerCase().includes(query) ||
+                product.category.toLowerCase().includes(query)
+            );
+
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="p-4 text-gray-500">' + 
+                    (currentLanguage === 'en' ? 'No products found' : 'لم يتم العثور على منتجات') + 
+                    '</div>';
+                searchResults.classList.remove('hidden');
+                return;
+            }
+
+            searchResults.innerHTML = '';
+            results.forEach(product => {
+                const resultItem = `
+                    <div class="p-3 border-b hover:bg-gray-100 cursor-pointer search-result" data-product-id="${product.id}">
+                        <div class="flex items-center space-x-3">
+                            <img src="${product.image}" alt="${product.alt}" class="w-12 h-12 object-cover rounded" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3337a085-8793-4afb-aa6c-6d9a3f82b7fd.png'">
+                            <div>
+                                <h4 class="font-semibold text-sm">${product.name}</h4>
+                                <p class="text-red-600 text-xs">$${product.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                searchResults.innerHTML += resultItem;
+            });
+
+            searchResults.classList.remove('hidden');
+
+            // Add click event to search results
+            document.querySelectorAll('.search-result').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.closest('.search-result').getAttribute('data-product-id'));
+                    searchInput.value = '';
+                    searchResults.classList.add('hidden');
+                    // Scroll to product (you could implement smooth scrolling)
+                    alert(currentLanguage === 'en' ? 
+                        `Viewing product: ${products.find(p => p.id === productId).name}` : 
+                        `عرض المنتج: ${products.find(p => p.id === productId).name}`);
+                });
+            });
+        }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.classList.add('hidden');
+            }
+        });
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
+
